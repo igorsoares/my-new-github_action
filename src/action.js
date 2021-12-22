@@ -13,16 +13,19 @@ const { pull_request } = context.payload;
 async function run() {
     randomPos=Math.floor(Math.random() * 10)
     const url=`https://g.tenor.com/v1/search?q=thank+you+leonardo+dicaprio&pos=${randomPos}&limit=1&media_filter=tinygif&contentfilter=high&key=${TENOR_TOKEN}`
+    console.log(url)
     url_media = undefined    
     msg='Obrigado pelo feedback. Avaliaremos assim que possível.'
     axios.get(url).then(function (response) { 
         var x = response.data.results
-        url_media=x[0].media[0].tinygif.url
+        url_media = x[0].media[0].tinygif.url
+        console.log("URL_MEDIA :" + url_media)
+        console.log(x)
     }).catch(function (error) { 
         console.log(error)
     })
     
-    console.log(url_media)
+  
 
     await octokit.rest.issues.createComment({
         ...context.repo,
