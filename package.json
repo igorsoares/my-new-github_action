@@ -1,0 +1,25 @@
+{
+  "name": "my-new-github_action",
+  "version": "1.0.0",
+  "description": "Github action to answer issues",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build src/action.js -o dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igorsoares/my-new-github_action.git"
+  },
+  "author": "Igor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/igorsoares/my-new-github_action/issues"
+  },
+  "homepage": "https://github.com/igorsoares/my-new-github_action#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "@vercel/ncc": "^0.33.1"
+  }
+}
