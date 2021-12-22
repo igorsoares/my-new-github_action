@@ -11491,9 +11491,8 @@ const { pull_request } = context.payload;
   
 async function run() {
     randomPos=Math.floor(Math.random() * 10)
-    search_item="thank you"
+    search_item="thanks dicaprio"
     const url = `https://g.tenor.com/v1/search?q=${search_item.split(" ").join("+")}&pos=${randomPos}&limit=1&media_filter=tinygif&contentfilter=high&key=${TENOR_TOKEN}`
-    console.log(url)
     
     msg='Obrigado pelo feedback. Avaliaremos assim que possível.'
     await axios.get(url).then(function (response) { 
