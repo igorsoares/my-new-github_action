@@ -11495,7 +11495,7 @@ async function run() {
     console.log(url)
     
     msg='Obrigado pelo feedback. Avaliaremos assim que possível.'
-    axios.get(url).then(function (response) { 
+    await axios.get(url).then(function (response) { 
         var x = response.data.results
         url_media = x[0].media[0].tinygif.url
         console.log("URL_MEDIA :" + url_media)
@@ -11503,14 +11503,14 @@ async function run() {
     }).catch(function (error) { 
         console.log(error)
     })
-    console.log("URL_MEDIA :" + url_media)
-  
 
     await octokit.rest.issues.createComment({
         ...context.repo,
         issue_number: pull_request.number,
         body: `${msg}<img src="${url_media}"`
     });
+   
+  
 }
   
 run();
