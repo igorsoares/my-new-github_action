@@ -12,7 +12,7 @@ const { pull_request } = context.payload;
   
 async function run() {
     randomPos=Math.floor(Math.random() * 10)
-    search_item="leonardo dicaprio thank you"
+    search_item="thank you"
     const url = `https://g.tenor.com/v1/search?q=${search_item.split(" ").join("+")}&pos=${randomPos}&limit=1&media_filter=tinygif&contentfilter=high&key=${TENOR_TOKEN}`
     console.log(url)
     
