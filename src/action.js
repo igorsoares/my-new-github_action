@@ -21,12 +21,14 @@ async function run() {
     }).catch(function (error) { 
         console.log(error)
     })
+    
+    console.log(url_media)
 
-  await octokit.rest.issues.createComment({
-    ...context.repo,
-    issue_number: pull_request.number,
-    body: `${msg}<img src="${url_media}"`
-  });
+    await octokit.rest.issues.createComment({
+        ...context.repo,
+        issue_number: pull_request.number,
+        body: `${msg}<img src="${url_media}"`
+    });
 }
   
 run();
