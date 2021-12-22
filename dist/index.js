@@ -11490,24 +11490,21 @@ const octokit = github.getOctokit(GITHUB_TOKEN);
 const { pull_request } = context.payload;
   
 async function run() {
-    randomPos=Math.floor(Math.random() * 1000)
-    const url=`https://g.tenor.com/v1/search?q=thank+you+leonardo+dicaprio&pos=${randomPos}&limit=1&media_filter=minimal&contentfilter=high&key=${TENOR_TOKEN}`
-    
+    randomPos=Math.floor(Math.random() * 10)
+    const url=`https://g.tenor.com/v1/search?q=thank+you+leonardo+dicaprio&pos=${randomPos}&limit=1&media_filter=tinygif&contentfilter=high&key=${TENOR_TOKEN}`
+    url_media = undefined    
+    msg='Obrigado pelo feedback. Avaliaremos assim que possível.'
     axios.get(url).then(function (response) { 
-        console.log(response)
+        var x = response.data.results
+        url_media=x[0].media[0].tinygif.url
     }).catch(function (error) { 
-        console.loog(error)
+        console.log(error)
     })
-
-
-    resp = await myfetch(url)
-    const respJson = resp.json()
-    console.log(respJson)
 
   await octokit.rest.issues.createComment({
     ...context.repo,
     issue_number: pull_request.number,
-    body: 'Thank you for submitting a pull request! We will try to review this as soon as we can.'
+    body: `${msg}<img src="${url_media}"`
   });
 }
   
