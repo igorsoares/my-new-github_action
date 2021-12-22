@@ -12,7 +12,8 @@ const { pull_request } = context.payload;
   
 async function run() {
     randomPos=Math.floor(Math.random() * 10)
-    const url=`https://g.tenor.com/v1/search?q=thank+you+leonardo+dicaprio&pos=${randomPos}&limit=1&media_filter=tinygif&contentfilter=high&key=${TENOR_TOKEN}`
+    search_item="leonardo dicaprio thank you"
+    const url = `https://g.tenor.com/v1/search?q=${search_item.split(" ").join("+")}&pos=${randomPos}&limit=1&media_filter=tinygif&contentfilter=high&key=${TENOR_TOKEN}`
     console.log(url)
     
     msg='Obrigado pelo feedback. Avaliaremos assim que possível.'
@@ -28,7 +29,7 @@ async function run() {
     await octokit.rest.issues.createComment({
         ...context.repo,
         issue_number: pull_request.number,
-        body: `${msg}<img src="${url_media}"`
+        body: `${msg}\n\n<img src="${url_media}" alt="${search_item}">`
     });
    
   
